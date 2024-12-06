@@ -1,0 +1,128 @@
+# Calculadora Simples
+
+## Objetivo
+Criar uma calculadora simples que realize operações matemáticas básicas (adição, subtração, multiplicação e divisão).
+
+## Funcionalidades
+- Operações básicas de cálculo: soma, subtração, multiplicação, e divisão.
+- Interface simples com botões para cada operação.
+- Exibição dos resultados.
+
+## Cronograma de Desenvolvimento
+- **Dia 1**: Estrutura do HTML e design básico da interface.
+- **Dia 2**: Implementação da lógica da calculadora em JavaScript.
+- **Dia 3**: Testes e melhorias na interface (estilização com CSS).
+- **Dia 4**: Documentação do código e finalização.
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendToDisplay('/')">/</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
+/* Resetando margens e paddings para todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Centralizando o conteúdo na tela */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f9;
+}
+
+/* Estilo da calculadora */
+.calculator {
+    width: 280px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+}
+
+#display {
+    width: 100%;
+    height: 40px;
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+}
+
+.buttons button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+}
+
+.buttons button:hover {
+    background-color: #ccc;
+}
+
+.buttons button:active {
+    background-color: #bbb;
+}
+let display = document.getElementById('display');
+
+// Adiciona valores ao display
+function appendToDisplay(value) {
+    display.value += value;
+}
+
+// Limpa o display
+function clearDisplay() {
+    display.value = '';
+}
+
+// Calcula o valor da expressão
+function calculate() {
+    try {
+        // Usa a função eval para calcular a expressão matemática
+        display.value = eval(display.value);
+    } catch (e) {
+        // Se ocorrer algum erro (por exemplo, divisão por zero), exibe "Erro"
+        display.value = 'Erro';
+    }
+}
